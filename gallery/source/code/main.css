@@ -19,6 +19,71 @@ input {
     font-family: 'Prompt', sans-serif;
 }
 
+/* Set background color and font styles for the form */
+form {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    padding: 0px;
+}
+
+/* Style the label elements */
+label {
+    color: #fff;
+    font-weight: bold;
+    margin-right: 10px;
+    width: 120px;
+    display: inline-block;
+}
+
+/* Style the search input field */
+#search {
+    border: none;
+    color: rgba(0,0,0,0.7);
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    padding: 10px;
+    width: 200px;
+    height: 20px;
+    margin-right: 20px;
+}
+
+/* Style the class dropdown */
+#class {
+    border: none;
+    border-radius: 5px;
+    color: rgba(0,0,0,0.7);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    font-size: 12px;
+    padding: 0px;
+    width: 150px;
+    height: 20px;
+    margin-right: 20px;
+}
+
+/* Style the purchaseable checkbox */
+#purchaseable {
+    width: 25px;
+    margin-right: 20px;
+}
+
+/* Style the search button */
+button[type="submit"] {
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    height: 40px;
+    width: 100px;
+    max-width: 200px;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #3e8e41;
+}
+
 p {
     font-size: 18px;
 }
@@ -600,8 +665,8 @@ button[type="submit"] {
     display: none;
     width: 100%;
     height: 100%;
-    top:0px;
-    left:0px;
+    top: 0px;
+    left: 0px;
     position: fixed;
     z-index: 5;
 }
