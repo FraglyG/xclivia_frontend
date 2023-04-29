@@ -126,6 +126,19 @@ function buildFeaturedCard(title, imgSrc, info, plant) {
     img.setAttribute("src", imgSrc);
     infoBox.appendChild(img);
 
+    let div1 = document.createElement("div")
+    div1.classList.add("track_image_effects")
+    infoBox.appendChild(div1)
+
+    let div2 = document.createElement("div")
+    div2.classList.add("track_image_effects_helper")
+    infoBox.appendChild(div2)
+
+    let pDesc = document.createElement("p")
+    pDesc.classList.add("track_image_hover_description")
+    pDesc.innerHTML = plant.description ? plant.description : ""
+    div2.appendChild(pDesc)
+
     for (let i = 0; i < info.length; i++) {
         let listItem = document.createElement("li");
         listItem.innerText = info[i];
@@ -164,8 +177,12 @@ function buildFeaturedCard(title, imgSrc, info, plant) {
         const titleEl = popupInfo.getElementsByTagName("h1")[0]
         titleEl.innerHTML = title
 
+        const plantDesc = plant.description ? plant.description + "<br><br>" : ""
+        const showsWon = plant.showsWon ? `Shows Won:<br>${plant.showsWon}<br><br>` : ""
+        const plantInfo = info ? `∘ ${info.join("<br>∘ ")}` : ""
+
         const descEl = popupInfo.getElementsByTagName("p")[0]
-        descEl.innerHTML = `${plant.description}<br><br>Shows Won: ${plant.showsWon}<br><br>∘ ${info.join("<br>∘ ")}`
+        descEl.innerHTML = `${plantDesc}${showsWon}${plantInfo}`
     })
 
     return imgBox;
@@ -216,7 +233,11 @@ function loadClivias() {
         //if (featuredValue == true) {
         const title = nameValue
         const image = mainImageValue
-        const info = [`${classNameValue}`, `${fatherNameValue} x ${motherNameValue}`, `${(purchaseableValue == true) && ("For Sale") || ("Not For Sale")}`]
+        const info = []
+
+        if (classNameValue) { info.push(classNameValue) }
+        if (fatherNameValue || motherNameValue) { info.push(`${fatherNameValue ? fatherNameValue : "Unknown"} x ${motherNameValue ? motherNameValue : "Unknown"}`) }
+        info.push(`${(purchaseableValue == true) && ("For Sale") || ("Not For Sale")}`)
 
         cliviaGallery.appendChild(buildFeaturedCard(title, image, info, {
             description: descriptionValue,

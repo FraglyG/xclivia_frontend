@@ -140,7 +140,11 @@ window.addEventListener('DOMContentLoaded', async (event) => {
         if (featuredValue == true) {
             const title = nameValue
             const image = mainImageValue
-            const info = [`${classNameValue}`, `${fatherNameValue} x ${motherNameValue}`, `${(purchaseableValue == true) && ("For Sale") || ("Not For Sale")}`]
+            const info = []
+
+            if (classNameValue) { info.push(classNameValue) }
+            if (fatherNameValue || motherNameValue) { info.push(`${fatherNameValue ? fatherNameValue : "Unknown"} x ${motherNameValue ? motherNameValue : "Unknown"}`) }
+            info.push(`${(purchaseableValue == true) && ("For Sale") || ("Not For Sale")}`)
 
             featured_images.appendChild(buildFeaturedCard(title, image, info))
         }
