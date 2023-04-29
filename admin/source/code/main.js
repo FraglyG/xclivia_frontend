@@ -3,6 +3,8 @@ const apiURL = serverURL
 
 var API_KEY = "" // received later
 
+const passwordMsgnr = document.getElementById("password_messenger")
+
 const form = document.getElementById("myForm");
 
 const plantName = document.getElementById("name");
@@ -38,8 +40,8 @@ async function getAPI(command) {
     return await axios.get(apiURL, { headers: { apikey: API_KEY, command: command } })
 }
 
-const results = await getAPI("get_clivia")
-console.log(results)
+// const results = await getAPI("get_clivia")
+// console.log(results)
 
 const readCsvButton = document.getElementById('read-csv-button');
 readCsvButton.addEventListener('click', readCSV);
@@ -76,9 +78,11 @@ function readCSV() {
     reader.readAsText(file);
 
     reader.onload = async function () {
+        displayTable([])
+        input.value = ""
+
         const csvText = reader.result;
         console.log(csvText); // Raw CSV text
-        console.log(parseCSV(csvText))
 
         const parsedData = parseCSV(csvText)
         await postAPI("set_clivias", parsedData)
@@ -103,6 +107,7 @@ function displayTable(data) {
         th.innerText = key;
         headerRow.appendChild(th);
     }
+    headerRow.classList.add("header_row")
     table.appendChild(headerRow);
 
     // Create table data rows
@@ -118,6 +123,7 @@ function displayTable(data) {
 
     container.appendChild(table);
 }
+displayTable([])
 
 function handleFileSelect(event) {
     const file = event.target.files[0];
@@ -135,14 +141,20 @@ fileInput.addEventListener('change', handleFileSelect);
 
 async function button(id) {
     if (id == "password_submit") {
-        const password = document.getElementById("admin_password").value;
+        const passwordEl = document.getElementById("admin_password")
+        const password = passwordEl.value;
         const result = await axios.get(apiURL, { headers: { password: password, command: "get_auth" } })
 
+        passwordEl.value = ""
         console.log(result)
 
         if (result.status == 200 && result.data.status == 200 && result.data.payload.apikey != null) {
             API_KEY = result.data.payload.apikey
             document.getElementById("overlay").remove()
+        } else {
+            console.log("incorrect")
+            passwordMsgnr.innerHTML = "Incorrect Password!"
+            setTimeout(() => {passwordMsgnr.innerHTML = "Enter your password";}, 2000) 
         }
 
     } else if (id == "form_submit") {
