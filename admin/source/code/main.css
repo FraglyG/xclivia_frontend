@@ -65,11 +65,26 @@ input[type="file"] {
 }
 
 #table-container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 10px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td,
+th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+th {
+    text-align: left;
+    background-color: #505050;
+    font-weight: bold;
 }
 
 .header_row {
@@ -79,7 +94,7 @@ input[type="file"] {
     color: white;
     background-color: #505050;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+}
 
 a {
     display: block;
