@@ -64,6 +64,24 @@ input[type="file"] {
     margin-top: 20px;
 }
 
+#read-csv-button:hover {
+    background-color: #17d827;
+}
+
+#clear-csv-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#clear-csv-button:hover {
+    background-color: #d81717;
+}
+
 #table-container {
     display: flex;
     justify-content: center;

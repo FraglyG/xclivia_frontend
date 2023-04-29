@@ -43,7 +43,15 @@ async function getAPI(command) {
 // const results = await getAPI("get_clivia")
 // console.log(results)
 
+const clearCsvButton = document.getElementById("clear-csv-button")
 const readCsvButton = document.getElementById('read-csv-button');
+
+clearCsvButton.addEventListener("click", () => {
+    const input = document.getElementById('csv-file');
+    displayTable([])
+    input.value = ""
+})
+
 readCsvButton.addEventListener('click', readCSV);
 
 function parseCSV(csvText) {
@@ -154,7 +162,7 @@ async function button(id) {
         } else {
             console.log("incorrect")
             passwordMsgnr.innerHTML = "Incorrect Password!"
-            setTimeout(() => {passwordMsgnr.innerHTML = "Enter your password";}, 2000) 
+            setTimeout(() => { passwordMsgnr.innerHTML = "Enter your password"; }, 2000)
         }
 
     } else if (id == "form_submit") {
