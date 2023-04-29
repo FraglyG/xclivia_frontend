@@ -351,6 +351,13 @@ li {
     -moz-user-select: none;
     -o-user-select: none;
     user-select: none;
+
+    /* transition: width 1s ease-out; */
+    transition: height 0.5s ease-in-out;
+}
+
+.track_image:hover {
+    height: 31vmin;
 }
 
 .img_box {

@@ -30,15 +30,22 @@ const popupHide = document.getElementById("IMG_HIDE_BUTTON")
 const popupOpen = document.getElementById("IMG_OPEN_BUTTON")
 const popupBg = document.getElementById("popup-background")
 
-popupBg.addEventListener("click", (e) => {
+function closePopup() {
     popup.classList.replace("active", "inactive")
     popupBg.style.display = "none"
+
+    popupHide.innerHTML = "HIDE"
+    popupInfo.style.display = "block"
+    const blackout = popupBody.getElementsByClassName("blackout")[0]
+    blackout.style.display = "block"
+}
+
+popupBg.addEventListener("click", (e) => {
+    closePopup()
 })
 
 popupClose.addEventListener("click", (e) => {
-    //popup.style.display = "none"
-    popup.classList.replace("active", "inactive")
-    popupBg.style.display = "none"
+    closePopup()
 })
 
 popupHide.addEventListener("click", (e) => {
@@ -282,7 +289,7 @@ async function loadPage() {
     const purchaseableTag = urlSearchParams.get("purchaseable") || null
 
     ACTIVE_LIST = CLIVIA_LIST
-    if (searchTag != null) { ACTIVE_LIST = ACTIVE_LIST.filter(obj => obj.Name.includes(searchTag)) }
+    if (searchTag != null) { ACTIVE_LIST = ACTIVE_LIST.filter(obj => obj.Name.toLowerCase().includes(searchTag.toLowerCase())) }
     if (classTag != null) { ACTIVE_LIST = ACTIVE_LIST.filter(obj => obj.Class == classTag) }
     if (purchaseableTag != null) { ACTIVE_LIST = ACTIVE_LIST.filter(obj => obj.Purchaseable.toString() == purchaseableTag) }
 
