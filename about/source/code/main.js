@@ -60,21 +60,6 @@ window.addEventListener('DOMContentLoaded', async (event) => {
     const results = await getAPI("get_clivia")
     CLIVIA_LIST = results.data.payload
 
-    let classes = []
-
-    CLIVIA_LIST.forEach(clivia => {
-        if (!classes.includes(clivia.Class)) { classes.push(clivia.Class) }
-    })
-
-    const select = document.getElementById("class");
-
-    classes.forEach((className) => {
-        const option = document.createElement("option");
-        option.value = className;
-        option.text = className;
-        select.appendChild(option);
-    });
-
     const randomInfoContainer = document.getElementById("random_clivia")
     const random_image = document.getElementById("random_image")
     const random_name = document.getElementById("random_name")
