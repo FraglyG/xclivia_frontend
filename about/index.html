@@ -1,0 +1,122 @@
+<html>
+<link rel="stylesheet" href="source/code/main.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <title>XClivia</title>
+    <link rel="icon" href="./source/images/logoSmall.png">
+</head>
+
+<body>
+
+    <div id="overlay_background_99"></div>
+
+    <div id="cliva_info_popup">
+        <h1 id="popup_title" style="margin: 10px">TITLE</h1>
+        <img id="popup_image">
+        <div id="popup_effects"></div>
+    </div>
+
+    <div id="header_container">
+        <div id="headerParent">
+            <div id="header">
+                <div id="title_container">
+                    <!--<h1 id="title">Oosie's Clivia Patch</h1>
+                    <p id="slogan">Experience the Colors of Life</p>-->
+                    <img id="logo_image" src="source/images/cropped_logo.png">
+                </div>
+            </div>
+
+            <ul id="navbar">
+                <li><a href="/">Home</a></li>
+                <li><a href="/gallery">Gallery</a></li>
+                <li><a href="#footer-contact">Contact</a></li>
+                <li><a class="active" href="/about">About</a></li>
+            </ul>
+
+        </div>
+
+        <div id="random_clivia">
+            <div id="random_img_container">
+                <img draggable="false" id="random_image"
+                    src="https://atlanticfertilisers.co.za/wp-content/uploads/2021/12/Life_is_garden_clivia-2-1024x890.jpg">
+            </div>
+            <div id="random_info_container">
+                <ul style="list-style-type: none;">
+                    <li class="random_info_li" id="random_name">
+                        NAME
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="parallax" style="background-image: url('source/images/thumbnail1.jpg'); height:fit-content; width: 100%">
+        <div id="title_shadow_effect"> 
+            <h1 style="position: relative; left: 13%; width: 50%; margin-bottom: 0px;">Hello, I'm</h1>
+            <h1 style="position: relative; left: 18%; width: 50%; font-size: 80px; margin-top: 0px;">Oosie</h1>
+        </div>
+    </div>
+
+    <p id="about-paragraph">
+        My journey began in September 2002 when a friend introduced me to the NCC Clivia Club Show at Lynnwood Ridge
+        Primary School. During the show, I was mesmerized by Bertie's Bronze, an extraordinary brown and bronze clivia,
+        sparking my fascination with clivias. Joining the NCC Clivia Club, I began my quest to breed bronze clivias, and
+        that same year, I acquired a significant amount of seed from the late Koos Geldenhuys.
+        <br><br>
+        As my interest grew, I spent time with Pikkie and Elize, who had some of the best bronze plants at that time. I
+        acquired seeds from the late Tino Ferreira through Pikkie. I grew a beautiful bronze plant (f15) (Bertie's
+        Bronze x Jackpot) that, along with Pikkie's Gunston daughters, a bronze from the late Braam Opperman, and a
+        Belgian Bronze from Sean Chubb, formed the foundation of my bronze collection.
+        <br><br>
+        Some of those seeds obtained through Pikkie from the late Tino Ferreira, produced a greenish group 1 yellow,
+        that Tino obtained from Bill Morris of Australia. Through linebreeding, I developed a grass-green bloom with a
+        knurled cream-colored edge.
+        <br><br>
+        As my interest expanded to other colors of clivias, I obtained plants and seeds from various sources, including
+        Chris Viljoen, Liz Boyd, Rouzell, Francois van Rooyen, Peter and Michael, and Sean Chubb. Most of my
+        interspecies hybrids were acquired from Francois van Rooyen.
+        <br><br>
+        Over the last four years, I developed a fondness for multi-tepal clivias and have acquired genetic material from
+        Paul and Sue Kloeck of Clivia Kingdom. Although I still breed with all colors and types, my focus has been on
+        breeding exceptional multi-tepal clivias.
+        <br><br>
+        At present, Jacques van Eck, Karel Stanz, and I mentor each other and exchange genetics, which has been
+        instrumental in advancing our breeding. This has made clivia breeding even more enjoyable.
+    </p>
+
+    <div class="parallax" style="position:relative; background-image: url('source/images/parallax2.jpg'); height:fit-content; width: 90%; left: 5%; height: 150px"></div>
+
+    <div id="footer" style="display: flex">
+        <div id="footer-about">
+            <h1 style="position: inherit; left: 10%">Who are we?</h1>
+            <p style="position: inherit; left: 15%">
+                I'm Oosie Strydom, I became fascinated with clivias in 2002 after seeing a bronze clivia at a show. I
+                joined the NCC Clivia Club and started breeding bronze clivias. Over time, I expanded my interest to
+                include other colors and types, and now focus on breeding exceptional multi-tepal clivias.
+            </p>
+        </div>
+        <div id="footer-contact">
+            <h1 style="position: inherit; left: 10%">Want to chat?</h1>
+            <div style="position: inherit; left: 15%">
+                <p>Call me - 061 502 4576</p>
+                <p>Email me - oosie.strydom@gmail.com</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="parallax" style="background-image: url('source/images/paralax1.jpg');"></div> -->
+
+</body>
+
+<script src="source/code/main.js"></script>
+
+</html>
