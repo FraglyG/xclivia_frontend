@@ -386,6 +386,7 @@ function checkForm() {
 
 urlSearchParams = new URLSearchParams(window.location.search);
 const form = document.querySelector('form');
+const searchInput = form.querySelector('[name="search"]');
 
 // Function to submit the form
 const submitForm = async () => {
@@ -411,6 +412,9 @@ const submitForm = async () => {
 
 // Add event listener to the form
 form.addEventListener('change', submitForm);
+
+// Add event listener to the search input field
+searchInput.addEventListener('input', submitForm);
 
 // Remove the search button
 const searchButton = form.querySelector('[type="submit"]');
