@@ -91,6 +91,14 @@ async function getAPI(command) {
     return await axios.get(apiURL, { headers: { apikey: API_KEY, command: command } })
 }
 
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
 function updateTag(tag, value) {
     const urlSearchParams = new URLSearchParams(window.location.search);
     if (tag !== undefined && value !== undefined) {
@@ -207,11 +215,12 @@ function loadClivias() {
     const start = (currentPage - 1) * amountPerPage
     const stop = start + amountPerPage
 
-
     cliviaGallery.innerHTML = ""
 
+    let currentList = shuffleArray(ACTIVE_LIST)
+
     for (let i = start; i < stop; i++) {
-        const clivia = ACTIVE_LIST[i]
+        const clivia = currentList[i]
 
         if (!clivia) { break }
 
@@ -375,6 +384,38 @@ function checkForm() {
     });
 }
 
+urlSearchParams = new URLSearchParams(window.location.search);
+const form = document.querySelector('form');
+
+// Function to submit the form
+const submitForm = async () => {
+    urlSearchParams = new URLSearchParams();
+    form.querySelectorAll('input, select').forEach(input => {
+        const name = input.getAttribute('name');
+        const value = input.type === 'checkbox' ? input.checked : input.value;
+        if (value) {
+            urlSearchParams.set(name, value);
+        }
+    });
+
+    currentPage = 1
+    pageNumb.innerHTML = currentPage
+    urlSearchParams.set("page", currentPage)
+
+    const newUrl = `${window.location.pathname}?${urlSearchParams.toString()}`;
+    window.history.pushState({ path: newUrl }, '', newUrl);
+
+    console.log("reloading page")
+    await loadPage()
+};
+
+// Add event listener to the form
+form.addEventListener('change', submitForm);
+
+// Remove the search button
+const searchButton = form.querySelector('[type="submit"]');
+searchButton.parentNode.removeChild(searchButton);
+
 window.addEventListener('DOMContentLoaded', async (event) => {
     const results = await getAPI("get_clivia")
     CLIVIA_LIST = results.data.payload
@@ -423,7 +464,7 @@ window.addEventListener('DOMContentLoaded', async (event) => {
 
     console.log(results)
 
-    checkForm();
+    //checkForm();
     await loadPage()
 });
 
