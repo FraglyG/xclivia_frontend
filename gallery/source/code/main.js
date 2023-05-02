@@ -217,7 +217,7 @@ function loadClivias() {
 
     cliviaGallery.innerHTML = ""
 
-    let currentList = shuffleArray(ACTIVE_LIST)
+    let currentList = ACTIVE_LIST
 
     for (let i = start; i < stop; i++) {
         const clivia = currentList[i]
@@ -422,13 +422,15 @@ searchButton.parentNode.removeChild(searchButton);
 
 window.addEventListener('DOMContentLoaded', async (event) => {
     const results = await getAPI("get_clivia")
-    CLIVIA_LIST = results.data.payload
+    CLIVIA_LIST = shuffleArray(results.data.payload)
 
     let classes = []
 
     CLIVIA_LIST.forEach(clivia => {
         if (!classes.includes(clivia.Class)) { classes.push(clivia.Class) }
     })
+
+    classes.sort()
 
     const select = document.getElementById("class");
 
