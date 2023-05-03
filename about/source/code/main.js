@@ -57,9 +57,6 @@ function updateTag(tag, value) {
 }
 
 window.addEventListener('DOMContentLoaded', async (event) => {
-    const results = await getAPI("get_clivia")
-    CLIVIA_LIST = results.data.payload
-
     const randomInfoContainer = document.getElementById("random_clivia")
     const random_image = document.getElementById("random_image")
     const random_name = document.getElementById("random_name")
