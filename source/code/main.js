@@ -114,7 +114,7 @@ function scroll_track(track, from, to) {
 window.addEventListener('DOMContentLoaded', async (event) => {
     const randomInfoContainer = document.getElementById("random_clivia")
     const featured_images = document.getElementById("featured_images").getElementsByClassName("image_track")[0]
-    const results = await getAPI("get_clivia")
+    const results = await getAPI("get_featured")
     CLIVIA_LIST = results.data.payload
 
     console.log(results)
@@ -182,17 +182,19 @@ window.addEventListener('DOMContentLoaded', async (event) => {
     const random_image = document.getElementById("random_image")
     const random_name = document.getElementById("random_name")
 
-    const randomClivia = CLIVIA_LIST[Math.floor(Math.random() * CLIVIA_LIST.length)]
+    let randomCliviaData = await getAPI("get_randomClivia")
+    let randomClivia = randomCliviaData.data.payload
 
     random_image.src = randomClivia.Image0
     random_name.innerHTML = randomClivia.Name
 
-    setInterval(() => {
+    setInterval(async () => {
+        let randomCliviaData = await getAPI("get_randomClivia")
+        let randomClivia = randomCliviaData.data.payload
+
         randomInfoContainer.animate({
             transform: `translate(100%, 0%)`
         }, { duration: random_image_swap_time, fill: "forwards" });
-
-        const randomClivia = CLIVIA_LIST[Math.floor(Math.random() * CLIVIA_LIST.length)]
 
         random_image.src = randomClivia.Image0
         random_name.innerHTML = randomClivia.Name
@@ -327,7 +329,7 @@ function togglePopup(state, origin) {
 
     //popup.style.display = "block"
     popup.classList.replace("inactive", "active")
-    setTimeout(() => {popupBg.style.display = "block"}, 100)
+    setTimeout(() => { popupBg.style.display = "block" }, 100)
 
 
     const img = document.getElementById("popup-img")
