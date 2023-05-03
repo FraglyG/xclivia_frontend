@@ -250,6 +250,7 @@ li {
 }
 
 #navbar>li a {
+    font-weight: 800;
     display: block;
     color: #197B30;
     text-align: center center;

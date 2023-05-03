@@ -259,90 +259,112 @@ window.ontouchstart = (e) => { onDown(e, e.changedTouches[0].clientX) }
 window.ontouchmove = (e) => { onMove(e, e.changedTouches[0].clientX) }
 window.ontouchend = (e) => { onUp(e) }
 
-const backgroundOverlay = document.getElementById("overlay_background_99")
-const info_popup = document.getElementById("cliva_info_popup")
+const popup = document.getElementById("popup")
+const popupClose = document.getElementById("popup-close")
+const popupBody = document.getElementById("popup-body")
+const popupInfo = document.getElementById("popup-info")
+const popupHide = document.getElementById("IMG_HIDE_BUTTON")
+const popupOpen = document.getElementById("IMG_OPEN_BUTTON")
+const popupBg = document.getElementById("popup-background")
 
-backgroundOverlay.addEventListener("pointerdown", (e) => {
-    if (e.button != 0) { return }
-    if (!current_popup_closest) { return }
-    togglePopup("close", current_popup_closest)
+const imgLeftArrow = document.getElementById("IMG_LEFT_ARROW")
+const imgRightArrow = document.getElementById("IMG_RIGHT_ARROW")
+const imgPageNumb = document.getElementById("IMG_PAGE_NUMB")
+const imgPageTotal = document.getElementById("IMG_PAGE_TOTAL")
+const popupImage = document.getElementById("popup-img")
 
-    current_popup_closest = null
+function closePopup() {
+    popup.classList.replace("active", "inactive")
+    popupBg.style.display = "none"
+
+    popupHide.innerHTML = "HIDE"
+    popupInfo.style.display = "block"
+    const blackout = popupBody.getElementsByClassName("blackout")[0]
+    blackout.style.display = "block"
+}
+
+popupBg.addEventListener("click", (e) => {
+    closePopup()
+})
+
+popupClose.addEventListener("click", (e) => {
+    console.log("clicked")
+    closePopup()
+})
+
+popupHide.addEventListener("click", (e) => {
+    if (popupHide.innerHTML == "HIDE") {
+        popupHide.innerHTML = "SHOW"
+        popupInfo.style.display = "none"
+        const blackout = popupBody.getElementsByClassName("blackout")[0]
+        blackout.style.display = "none"
+    } else if (popupHide.innerHTML == "SHOW") {
+        popupHide.innerHTML = "HIDE"
+        popupInfo.style.display = "block"
+        const blackout = popupBody.getElementsByClassName("blackout")[0]
+        blackout.style.display = "block"
+    }
+})
+
+popupOpen.addEventListener("click", (e) => {
+    const bgImg = popupImage.style.backgroundImage.slice(5, -2)
+    window.open(bgImg, "_Blank")
 })
 
 function togglePopup(state, origin) {
-    var popup = document.getElementById("cliva_info_popup");
+    const plantName = origin.getElementsByClassName("clivia_title")[0].firstChild.innerHTML
+    const index = CLIVIA_LIST.findIndex(obj => obj.Name == plantName)
+    let clivia = null
 
-    var rect = origin.getBoundingClientRect();
-    var originX = (rect.left + rect.right) / 2 + window.scrollX;
-    var originY = (rect.top + rect.bottom) / 2 + window.scrollY;
-    var originWidth = origin.offsetWidth;
-    var originHeight = origin.offsetHeight;
+    if (index >= 0) { clivia = CLIVIA_LIST[index] }
+    if (!clivia) { return }
 
-    const popupDisplay = window.getComputedStyle(popup).getPropertyValue("display")
+    const info = []
 
-    if (state === "open" && popupDisplay == "none") {
-        backgroundOverlay.style.display = "block"
+    if (clivia.Class) { info.push(clivia.Class) }
+    if (clivia.FatherName || clivia.MotherName) { info.push(`${clivia.FatherName ? clivia.FatherName : "Unknown"} x ${clivia.MotherName ? clivia.MotherName : "Unknown"}`) }
+    info.push(`${(clivia.Purchaseable == true) && ("For Sale") || ("Not For Sale")}`)
 
-        // Set the popup data
-        const plantName = origin.getElementsByClassName("clivia_title")[0].firstChild.innerHTML
-        const index = CLIVIA_LIST.findIndex(obj => obj.Name == plantName)
-        if (index >= 0) {
-            const clivia = CLIVIA_LIST[index]
+    //popup.style.display = "block"
+    popup.classList.replace("inactive", "active")
+    setTimeout(() => {popupBg.style.display = "block"}, 100)
 
-            const titleElement = document.getElementById("popup_title")
-            const imageElement = document.getElementById("popup_image")
 
-            titleElement.innerHTML = clivia.Name
-            imageElement.src = clivia.Image0
-        }
+    const img = document.getElementById("popup-img")
+    img.style.backgroundImage = `url(${clivia.Image0})`
 
-        // Set the position and size of the popup to match the origin element
-        popup.style.left = originX + "px";
-        popup.style.top = originY + "px";
-        popup.style.width = originWidth + "px";
-        popup.style.height = originHeight + "px";
+    const extraImages = [clivia.Image1, clivia.Image2]
 
-        // Show the popup
-        popup.style.display = "block";
+    const imageHolders = img.getElementsByClassName("img_holder")
+    imageHolders[0].innerHTML = clivia.Image0
+    imageHolders[1].innerHTML = extraImages[0]
+    imageHolders[2].innerHTML = extraImages[1]
 
-        let smallestSize = window.innerHeight;
-        if (window.innerWidth < window.innerHeight) { smallestSize = window.innerWidth }
+    const noNullValues = extraImages.filter(item => item !== null);
+    const pageCount = 1 + noNullValues.length
+    imgPageTotal.innerHTML = pageCount
 
-        popup.animate(
-            [
-                {
-                    left: originX + "px",
-                    top: originY + "px",
-                    width: originWidth + "px",
-                    height: originHeight + "px",
-                    opacity: 0
-                },
-                {
-                    left: window.innerWidth / 2 + "px",
-                    top: window.innerHeight / 2 + "px",
-                    width: (0.7 * smallestSize) + "px",
-                    height: (0.5 * smallestSize) + "px",
-                    opacity: 1
-                }
-            ], { duration: popup_time, fill: "forwards", easing: "ease-in-out" })
+    imgPageNumb.innerHTML = 1
 
-    } else if (state === "close" && popupDisplay == "block") {
-        backgroundOverlay.style.display = "none"
-
-        popup.animate({
-            left: originX + "px",
-            top: originY + "px",
-            width: originWidth + "px",
-            height: originHeight + "px",
-            opacity: 0
-        }, { duration: popup_time, fill: "forwards", easing: "ease-in-out" });
-
-        setTimeout(() => {
-            if (cache.current_popup_closest) { return }
-            popup.style.display = "none"
-        }, popup_time);
+    const pClose = popupClose.getElementsByTagName("p")[0]
+    if (window.innerWidth > window.innerHeight) {
+        pClose.innerHTML = "CLOSE"
+    } else {
+        pClose.innerHTML = "X"
     }
+
+    const blackout = popupBody.getElementsByClassName("blackout")[0]
+    blackout.style.display = "block"
+
+    const titleEl = popupInfo.getElementsByTagName("h1")[0]
+    titleEl.innerHTML = clivia.Name
+
+    const plantDesc = clivia.Description ? clivia.Description + "<br><br>" : ""
+    const showsWon = clivia.ShowsWon ? `Shows Won:<br>${clivia.ShowsWon}<br><br>` : ""
+    const plantInfo = info ? `∘ ${info.join("<br>∘ ")}` : ""
+
+    const descEl = popupInfo.getElementsByTagName("p")[0]
+    descEl.innerHTML = `${plantDesc}${showsWon}${plantInfo}`
 }
 
 $(document).on('click', '[data-scroll]', function (e) {

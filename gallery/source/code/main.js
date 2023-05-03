@@ -311,7 +311,6 @@ rightArrow.addEventListener("click", async () => {
 })
 
 async function loadPage() {
-    console.log("loading page")
     const cliviaGallery = document.getElementById("clivia-gallery")
 
     const searchTag = urlSearchParams.get("search") || null

@@ -30,10 +30,36 @@
 
     <div id="overlay_background_99"></div>
 
-    <div id="cliva_info_popup">
-        <h1 id="popup_title" style="margin: 10px">TITLE</h1>
-        <img id="popup_image">
-        <div id="popup_effects"></div>
+    <div id="popup-background"></div>
+    <div id="popup" class="inactive">
+        <div id="popup-close">
+            <p style="margin-top: 2.5%">CLOSE</p>
+        </div>
+        <div id="popup-body">
+            <div id="popup-img">
+                <div class="blackout"></div>
+                <div id="popup-info">
+                    <h1></h1>
+                    <p></p>
+                </div>
+
+                <div id="popup-img-buttons">
+                    <p id="IMG_LEFT_ARROW">⪡</p>
+                    <p id="IMG_PAGE_NUMB">1</p>
+                    <p>/</p>
+                    <p id="IMG_PAGE_TOTAL">1</p>
+                    <p id="IMG_RIGHT_ARROW">⪢</p>
+                    <p style="margin-right: 10px;margin-left: 10px;">|</p>
+                    <p id="IMG_HIDE_BUTTON">HIDE</p>
+                    <p style="margin-right: 10px;margin-left: 10px;">|</p>
+                    <p id="IMG_OPEN_BUTTON">OPEN</p>
+                </div>
+
+                <p class="img_holder" style="display: none;"></p>
+                <p class="img_holder" style="display: none;"></p>
+                <p class="img_holder" style="display: none;"></p>
+            </div>
+        </div>
     </div>
 
     <div id="header_container">
@@ -57,13 +83,12 @@
 
         <div id="random_clivia">
             <div id="random_img_container">
-                <img draggable="false" id="random_image"
-                    src="https://atlanticfertilisers.co.za/wp-content/uploads/2021/12/Life_is_garden_clivia-2-1024x890.jpg">
+                <img draggable="false" id="random_image" src="">
             </div>
             <div id="random_info_container">
                 <ul style="list-style-type: none;">
                     <li class="random_info_li" id="random_name">
-                        NAME
+
                     </li>
                 </ul>
             </div>
@@ -137,8 +162,11 @@
 
     </div>
 
-    <h1 style="position: relative; left: 50%; transform: translate(-50%, 0%); width:fit-content; height: fit-content">
-        Exclusive Clivias</h1>
+    <div
+        style="display: flex; position: relative; left: 0%; margin-top: 15px; margin-bottom: 15px; width: 100%; height: fit-content; justify-content: center; align-items: center;">
+        <h1 class="gradientText1" style="font-weight: 800; text-transform: uppercase; font-size: 35px;">Exclusive</h1>
+        <h1 style="margin-left: 20px; font-size: 35px; color: white">Clivias</h1>
+    </div>
 
     <div class="parallax" style="background-image: url('source/images/parallax2.jpg');"></div>
 
