@@ -64,17 +64,19 @@ window.addEventListener('DOMContentLoaded', async (event) => {
     const random_image = document.getElementById("random_image")
     const random_name = document.getElementById("random_name")
 
-    const randomClivia = CLIVIA_LIST[Math.floor(Math.random() * CLIVIA_LIST.length)]
+    let randomCliviaData = await getAPI("get_randomClivia")
+    let randomClivia = randomCliviaData.data.payload
 
     random_image.src = randomClivia.Image0
     random_name.innerHTML = randomClivia.Name
 
-    setInterval(() => {
+    setInterval(async () => {
+        let randomCliviaData = await getAPI("get_randomClivia")
+        let randomClivia = randomCliviaData.data.payload
+
         randomInfoContainer.animate({
             transform: `translate(100%, 0%)`
         }, { duration: random_image_swap_time, fill: "forwards" });
-
-        const randomClivia = CLIVIA_LIST[Math.floor(Math.random() * CLIVIA_LIST.length)]
 
         random_image.src = randomClivia.Image0
         random_name.innerHTML = randomClivia.Name
@@ -86,8 +88,6 @@ window.addEventListener('DOMContentLoaded', async (event) => {
 
         }, random_image_swap_time * 1.5)
     }, random_image_swap_interval);
-
-    console.log(results)
 });
 
 $(document).on('click', '[data-scroll]', function (e) {
