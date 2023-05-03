@@ -470,7 +470,7 @@ window.addEventListener('DOMContentLoaded', async (event) => {
 
     console.log(results)
 
-    //checkForm();
+    checkForm();
     await loadPage()
 });
 

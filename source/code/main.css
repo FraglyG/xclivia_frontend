@@ -461,12 +461,44 @@ li {
     width: 100px;
 
     background-color: rgba(156, 156, 156, 0.61);
-    background-image: url("https://atlanticfertilisers.co.za/wp-content/uploads/2021/12/Life_is_garden_clivia-2-1024x890.jpg");
+    
     background-size: cover;
     background-blend-mode: multiply;
     background-repeat: no-repeat;
 
     border-radius: 10px;
+}
+
+.class_mt {
+    background-image: url("https://cdn.discordapp.com/attachments/1101563804082520114/1101581961883033672/IMG_20220131_080909.jpg");
+}
+
+.class_interspec {
+    background-image: url("https://cdn.discordapp.com/attachments/1101563804082520114/1101570878728327290/IMG_20230427_171258.jpg");
+}
+
+.class_blushes {
+    background-image: url("https://cdn.discordapp.com/attachments/1101563804082520114/1102121313520320612/20200912_204804.jpg");
+}
+
+.class_splashes {
+    background-image: url("https://cdn.discordapp.com/attachments/1101563804082520114/1102122322627923999/20200813_200428.jpg");
+}
+
+.class_picotee {
+    background-image: url("https://cdn.discordapp.com/attachments/1101563804082520114/1101583352206721064/IMG_20220811_104608.jpg");
+}
+
+.class_bronze {
+    background-image: url("https://cdn.discordapp.com/attachments/1101563731219062786/1103317375929028650/image.png");
+}
+
+.class_pendulous {
+    background-image: url("https://cdn.discordapp.com/attachments/1101563731219062786/1103317683598020608/image.png")
+}
+
+.class_bicolour {
+    background-image: url("https://cdn.discordapp.com/attachments/1101563804082520114/1102128352652967956/IMG_20230430_090402.jpg");
 }
 
 .class_button {
